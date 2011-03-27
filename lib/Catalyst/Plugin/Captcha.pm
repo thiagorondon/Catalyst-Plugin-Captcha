@@ -17,6 +17,7 @@ sub setup {
     $config->{session_name}        ||= 'captcha_string';
     $config->{captcha}->{new}      ||= {};
     $config->{captcha}->{create}   ||= [];
+    $config->{captcha}->{info_text}||= [];
     $config->{captcha}->{particle} ||= [];
     $config->{captcha}->{out}      ||= {};
 
@@ -32,6 +33,7 @@ sub create_captcha {
 
     $image->random();
     $image->create( @{ $conf->{create} } );
+    $image->info_text( @{ $conf->{info_text} } );
     $image->particle( @{ $conf->{particle} } );
 
     my ( $image_data, $mime_type, $random_string ) =
